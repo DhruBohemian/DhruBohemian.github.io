@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    body {
+    font-family: "Noto Serif Bengali", Georgia, serif;
+    background: #f7f5f0;
+    color: #1d1d1d;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(247, 245, 240, 0.95);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    border-bottom: 1px solid #ddd8ce;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #8b5e3c;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 88vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+    position: relative;
+overflow: hidden;
+}
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    background:
+        rgba(139, 94, 60, 0.08);
+
+    border-radius: 50%;
+
+    top: -150px;
+    right: -150px;
+
+    filter: blur(80px);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.small-title {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #8b5e3c;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 8vw, 100px);
+    line-height: 1.05;
+    font-weight: normal;
+}
+
+.hero h1 span,
+.section-heading span,
+.about span,
+.contact span {
+    color: #8b5e3c;
+    font-style: italic;
+}
+
+.hero-text {
+    max-width: 600px;
+    margin: 30px auto;
+    font-size: 19px;
+    color: #666;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.main-button {
+    display: inline-block;
+
+    margin-top: 15px;
+    padding: 14px 28px;
+
+    background: #1d1d1d;
+    color: white;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.main-button:hover {
+    background: #8b5e3c;
+}
+
+
+/* =========================
+   WRITINGS
+========================= */
+
+.writings {
+    padding: 110px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-heading h2,
+.about h2,
+.contact h2 {
+    font-size: clamp(40px, 5vw, 65px);
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.section-heading > p:last-child {
+    margin-top: 15px;
+    color: #777;
+}
+
+
+.writing-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.writing-card {
+    background: white;
+    padding: 35px;
+
+    border: 1px solid #e3dfd6;
+
+    transition: 0.3s;
+}
+
+.writing-card:hover {
+    transform: translateY(-12px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08);
+
+    border-color: #8b5e3c;
+}
+}
+
+.category {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #8b5e3c;
+    margin-bottom: 20px;
+}
+
+.writing-card h3 {
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.writing-card p {
+    color: #666;
+}
+
+.writing-card a {
+    display: inline-block;
+    margin-top: 25px;
+
+    color: #1d1d1d;
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.writing-card a:hover {
+    color: #8b5e3c;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    padding: 120px 8%;
+
+    background: #1d1d1d;
+    color: white;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.about h2 {
+    margin-bottom: 35px;
+}
+
+.about p:not(.small-title) {
+    color: #c9c9c9;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.contact h2 {
+    margin-bottom: 20px;
+}
+
+.contact > p:not(.small-title) {
+    color: #777;
+}
+
+.social-links {
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    padding: 12px 25px;
+
+    border: 1px solid #ccc;
+
+    text-decoration: none;
+    color: #222;
+
+    font-family: Arial, sans-serif;
+
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: #1d1d1d;
+    color: white;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 30px 8%;
+
+    border-top: 1px solid #ddd8ce;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #777;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 18px 5%;
+        backdrop-filter: blur(12px);
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .navbar nav {
+        gap: 12px;
+    }
+
+    .navbar nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .hero-text {
+        font-size: 17px;
+    }
+
+    .writing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .writings {
+        padding: 80px 5%;
+    }
+
+    .about {
+        padding: 80px 5%;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
