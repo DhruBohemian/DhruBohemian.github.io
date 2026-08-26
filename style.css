@@ -21,6 +21,7 @@ body {
     align-items: center;
     border-bottom: 1px solid #ddd;
     background: #faf9f6;
+    backdrop-filter: blur(12px);
 }
 
 .logo {
@@ -53,6 +54,25 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
+}
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    background:
+        rgba(139, 94, 60, 0.08);
+
+    border-radius: 50%;
+
+    top: -150px;
+    right: -150px;
+
+    filter: blur(80px);
 }
 
 .hero-content {
@@ -125,8 +145,12 @@ body {
 }
 
 .writing-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transform: translateY(-12px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08);
+
+    border-color: #8b5e3c;
 }
 
 .writing-card .category {
