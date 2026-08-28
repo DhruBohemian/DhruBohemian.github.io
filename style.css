@@ -403,10 +403,14 @@ footer {
     }
 
     .writing-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.writing-card {
+    width: 100%;
+}
 
     .writing-card {
         width: 100%;
