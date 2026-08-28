@@ -460,3 +460,18 @@ footer {
     }
 
 }
+@media screen and (max-width: 1000px) {
+
+    .writing-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    .writing-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+}
