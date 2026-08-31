@@ -33,7 +33,13 @@
         <div class="logo">
             DhruBohemian
         </div>
-
+        
+<div class="live-time">
+    <span id="live-date">August 31, 2026</span>
+    <span class="time-dot">•</span>
+    <span id="live-clock">06:17 PM</span>
+</div>
+        
         <nav>
             <a href="#home">Home</a>
             <a href="#writings">Writings</a>
@@ -320,6 +326,38 @@ function escapeHTML(value) {
 loadWritings();
 </script>
 
+    <script>
+function updateDateTime() {
+
+    const now = new Date();
+
+    const dateOptions = {
+        timeZone: "Asia/Dhaka",
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    };
+
+    const timeOptions = {
+        timeZone: "Asia/Dhaka",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    };
+
+    document.getElementById("live-date").textContent =
+        new Intl.DateTimeFormat("en-US", dateOptions).format(now);
+
+    document.getElementById("live-clock").textContent =
+        new Intl.DateTimeFormat("en-US", timeOptions).format(now);
+}
+
+updateDateTime();
+
+setInterval(updateDateTime, 1000);
+</script>
 
 </body>
 
