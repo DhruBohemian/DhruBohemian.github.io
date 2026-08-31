@@ -921,3 +921,27 @@ footer {
     }
 
 }
+/* =========================
+   ABOUT — DESKTOP FIX
+========================= */
+
+@media (min-width: 901px) {
+
+    .about {
+        padding: 135px 7%;
+    }
+
+    .about .small-title {
+        color: #8b5e3c;
+    }
+
+    .about h2 {
+        color: #1d1d1d;
+    }
+
+    .about p:not(.small-title) {
+        color: #514d47 !important;
+        opacity: 1 !important;
+    }
+
+}
