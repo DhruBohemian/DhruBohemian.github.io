@@ -945,3 +945,341 @@ footer {
     }
 
 }
+/* =========================================
+   DHruBOHEMIAN — PREMIUM ANIMATIONS
+========================================= */
+
+/* ---------- PAGE LOAD ---------- */
+
+body {
+    animation: pageFade 1s ease both;
+}
+
+@keyframes pageFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ---------- NAVBAR ---------- */
+
+.navbar {
+    animation: navReveal 0.9s ease both;
+}
+
+@keyframes navReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    transition: transform 0.35s ease, letter-spacing 0.35s ease;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    letter-spacing: 1.5px;
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero-content {
+    animation: heroReveal 1.2s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small-title {
+    animation: titleReveal 1s ease 0.15s both;
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        letter-spacing: 12px;
+    }
+
+    to {
+        opacity: 1;
+        letter-spacing: 5px;
+    }
+}
+
+.hero h1 {
+    animation: headingReveal 1.2s cubic-bezier(.22, 1, .36, 1) 0.15s both;
+}
+
+@keyframes headingReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.hero-text {
+    animation: textReveal 1s ease 0.45s both;
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content > a {
+    animation: buttonReveal 0.9s ease 0.65s both;
+}
+
+@keyframes buttonReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- HERO BACKGROUND ---------- */
+
+.hero::before {
+    animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.hero::after {
+    animation: floatOrbReverse 15s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(-35px, 30px) scale(1.08);
+    }
+}
+
+@keyframes floatOrbReverse {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(30px, -25px) scale(1.06);
+    }
+}
+
+
+/* ---------- SECTION HEADING ---------- */
+
+.section-heading {
+    animation: sectionReveal 1s ease both;
+}
+
+@keyframes sectionReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- WRITING CARDS ---------- */
+
+.writing-card {
+    animation: cardReveal 0.9s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.writing-card:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.writing-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.writing-card:nth-child(3) {
+    animation-delay: 0.45s;
+}
+
+.writing-card:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes cardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- CARD HOVER ---------- */
+
+.writing-card {
+    transition:
+        transform 0.45s cubic-bezier(.22, 1, .36, 1),
+        box-shadow 0.45s ease,
+        border-color 0.35s ease;
+}
+
+.writing-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.09);
+}
+
+.writing-card::before {
+    transition: width 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ---------- READ MORE ---------- */
+
+.writing-card a {
+    transition:
+        color 0.3s ease,
+        transform 0.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ---------- ABOUT ---------- */
+
+.about-content {
+    animation: aboutReveal 1s ease both;
+}
+
+@keyframes aboutReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about::after {
+    animation: aboutRing 18s linear infinite;
+}
+
+@keyframes aboutRing {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.05);
+    }
+}
+
+
+/* ---------- CONTACT ---------- */
+
+.contact {
+    animation: contactReveal 1s ease both;
+}
+
+@keyframes contactReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- SOCIAL BUTTONS ---------- */
+
+.social-links a {
+    position: relative;
+    overflow: hidden;
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    transition: opacity 0.3s ease;
+}
+
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
