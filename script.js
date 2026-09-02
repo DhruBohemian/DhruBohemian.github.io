@@ -25,3 +25,4 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(element);
   });
 });
+console.log("DhruBohemian script loaded!");
