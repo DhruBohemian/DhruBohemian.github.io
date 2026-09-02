@@ -1283,3 +1283,46 @@ footer {
     }
 
 }
+/* SCROLL REVEAL */
+.js-scroll .section-heading,
+.js-scroll .writing-card,
+.js-scroll .about,
+.js-scroll .contact {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(.22,1,.36,1);
+}
+
+.js-scroll .writing-card {
+  transition-delay: 0.08s;
+}
+
+.js-scroll .writing-card:nth-child(2) {
+  transition-delay: 0.16s;
+}
+
+.js-scroll .writing-card:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.js-scroll .section-heading.show,
+.js-scroll .writing-card.show,
+.js-scroll .about.show,
+.js-scroll .contact.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .js-scroll .section-heading,
+  .js-scroll .writing-card,
+  .js-scroll .about,
+  .js-scroll .contact {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
