@@ -227,36 +227,33 @@ async function loadWritings() {
 
     if (!grid) return;
 
+    const writingFiles = [
+        "a-mystery-called-human.md",
+        "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
+        "microplastics-the-invisible-threat-inside-the-human-body.md",
+        "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
+        "ফুলের-মতো-নারী.md"
+    ];
+
     try {
 
-        const response = await fetch(
-            "https://api.github.com/repos/DhruBohemian/DhruBohemian.github.io/contents/writings"
-        );
+        for (const filename of writingFiles) {
 
-        if (!response.ok) {
-            throw new Error("Could not load writings");
-        }
+            const rawURL =
+                "https://raw.githubusercontent.com/DhruBohemian/DhruBohemian.github.io/main/writings/" +
+                encodeURIComponent(filename);
 
-        const files = await response.json();
+            const response = await fetch(rawURL);
 
-        const markdownFiles = files.filter(file =>
-            file.name.endsWith(".md")
-        );
+            if (!response.ok) continue;
 
-        for (const file of markdownFiles) {
-
-            const rawResponse = await fetch(file.download_url);
-
-            if (!rawResponse.ok) continue;
-
-            const markdown = await rawResponse.text();
+            const markdown = await response.text();
 
             const parts = markdown.split("---");
 
             if (parts.length < 3) continue;
 
             const frontMatter = parts[1];
-            const body = parts.slice(2).join("---").trim();
 
             function getValue(key) {
 
@@ -291,7 +288,7 @@ async function loadWritings() {
                     ${escapeHTML(excerpt)}
                 </p>
 
-                <a href="article.html?post=${encodeURIComponent(file.name)}">
+                <a href="article.html?post=${encodeURIComponent(filename)}">
                     Read More →
                 </a>
             `;
