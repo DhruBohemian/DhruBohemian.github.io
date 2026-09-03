@@ -5,24 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
     ".section-heading, .writing-card, .about, .contact"
   );
 
-  if (!revealElements.length) return;
+  console.log("Reveal elements found:", revealElements.length);
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
+          console.log("Revealed:", entry.target);
           observer.unobserve(entry.target);
         }
       });
     },
-    {
-      threshold: 0.15
-    }
+    { threshold: 0.15 }
   );
 
-  revealElements.forEach((element) => {
-    observer.observe(element);
-  });
+  revealElements.forEach((element) => observer.observe(element));
 });
+
 console.log("DhruBohemian script loaded!");
