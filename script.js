@@ -5,14 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ".section-heading, .writing-card, .about, .contact"
   );
 
-  console.log("Reveal elements found:", revealElements.length);
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
-          console.log("Revealed:", entry.target);
           observer.unobserve(entry.target);
         }
       });
@@ -23,4 +21,3 @@ document.addEventListener("DOMContentLoaded", () => {
   revealElements.forEach((element) => observer.observe(element));
 });
 
-console.log("DhruBohemian script loaded!");
