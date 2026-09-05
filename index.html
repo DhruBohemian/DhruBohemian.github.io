@@ -255,16 +255,21 @@ async function loadWritings() {
                 "https://raw.githubusercontent.com/DhruBohemian/DhruBohemian.github.io/main/writings/"
                 + encodeURIComponent(filename);
 
-            const response = await fetch(rawURL);
+           const response = await fetch(rawURL);
 
-            if (!response.ok) continue;
+if (!response.ok) {
+    console.error("FAILED TO LOAD:", filename, response.status, rawURL);
+    continue;
+}
 
             const markdown = await response.text();
 
-            const parts = markdown.split("---");
+            const parts = markdown.split(/^---$/m);
 
-            if (parts.length < 3) continue;
-
+if (parts.length < 3) {
+    console.error("INVALID MARKDOWN FRONTMATTER:", filename);
+    continue;
+}
             const frontMatter = parts[1];
 
             function getValue(key) {
