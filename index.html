@@ -239,38 +239,49 @@ async function loadWritings() {
     if (!grid) return;
 
     const writingFiles = [
-    "a-mystery-called-human.md",
-    "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
-    "microplastics-the-invisible-threat-inside-the-human-body.md",
-    "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
-    "ফুলের-মতো-নারী.md",
-    "ekto-proshongsha-ekto-bhalo-thaka.md"
-];
+        "a-mystery-called-human.md",
+        "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
+        "microplastics-the-invisible-threat-inside-the-human-body.md",
+        "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
+        "ফুলের-মতো-নারী.md",
+        "ekto-proshongsha-ekto-bhalo-thaka.md"
+    ];
 
-    try {
+    for (const filename of writingFiles) {
 
-        for (const filename of writingFiles) {
+        try {
 
             const rawURL =
                 "https://raw.githubusercontent.com/DhruBohemian/DhruBohemian.github.io/main/writings/"
                 + encodeURIComponent(filename);
 
-           const response = await fetch(rawURL);
+            const response = await fetch(rawURL);
 
-if (!response.ok) {
-    console.error("FAILED TO LOAD:", filename, response.status, rawURL);
-    continue;
-}
+            if (!response.ok) {
+                console.error(
+                    "FAILED TO LOAD:",
+                    filename,
+                    response.status
+                );
+                continue;
+            }
 
             const markdown = await response.text();
 
-            const parts = markdown.split(/^---$/m);
+            /* Find frontmatter */
+            const frontMatterMatch = markdown.match(
+                /^\s*---\s*([\s\S]*?)\s*---/
+            );
 
-if (parts.length < 3) {
-    console.error("INVALID MARKDOWN FRONTMATTER:", filename);
-    continue;
-}
-            const frontMatter = parts[1];
+            if (!frontMatterMatch) {
+                console.error(
+                    "NO FRONTMATTER FOUND:",
+                    filename
+                );
+                continue;
+            }
+
+            const frontMatter = frontMatterMatch[1];
 
             function getValue(key) {
 
@@ -287,6 +298,14 @@ if (parts.length < 3) {
             const title = getValue("title");
             const category = getValue("category");
             const excerpt = getValue("excerpt");
+
+            if (!title) {
+                console.error(
+                    "TITLE NOT FOUND:",
+                    filename
+                );
+                continue;
+            }
 
             const card = document.createElement("article");
 
@@ -318,12 +337,16 @@ if (parts.length < 3) {
             } else {
                 grid.appendChild(card);
             }
+
+        } catch (error) {
+
+            console.error(
+                "ERROR LOADING:",
+                filename,
+                error
+            );
+
         }
-
-    } catch (error) {
-
-        console.error("Could not load writings:", error);
-
     }
 }
 
