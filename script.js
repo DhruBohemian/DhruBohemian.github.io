@@ -3,8 +3,8 @@ document.documentElement.classList.add("js-scroll");
 document.addEventListener("DOMContentLoaded", () => {
 
     const revealElements = document.querySelectorAll(
-        ".section-heading, .writing-card, .about, .contact"
-    );
+    ".section-heading, .writing-card, .about, .contact, .featured-writing"
+);
 
     const observer = new IntersectionObserver(
         (entries) => {
