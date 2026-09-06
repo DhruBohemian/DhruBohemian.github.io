@@ -1,10 +1,8 @@
-document.documentElement.classList.add("js-scroll");
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const revealElements = document.querySelectorAll(
-    ".section-heading, .writing-card, .about, .contact, .featured-writing"
-);
+        ".section-heading, .writing-card, .about, .contact, .featured-writing"
+    );
 
     const observer = new IntersectionObserver(
         (entries) => {
@@ -16,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     entry.target.classList.add("show");
 
                     observer.unobserve(entry.target);
+
                 }
 
             });
@@ -26,38 +25,60 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-    /* Observe elements already on the page */
+
     revealElements.forEach((element) => {
         observer.observe(element);
     });
 
-    /* Watch for writing cards loaded later from GitHub */
-    const writingGrid = document.querySelector(".writing-grid");
+
+    window.observeWritingCard = function (card) {
+
+        if (
+            card &&
+            card.nodeType === 1 &&
+            card.classList.contains("writing-card")
+        ) {
+
+            observer.observe(card);
+
+        }
+
+    };
+
+
+    const writingGrid =
+        document.querySelector(".writing-grid");
+
 
     if (writingGrid) {
 
-        const cardWatcher = new MutationObserver((mutations) => {
+        const cardWatcher =
+            new MutationObserver((mutations) => {
 
-            mutations.forEach((mutation) => {
+                mutations.forEach((mutation) => {
 
-                mutation.addedNodes.forEach((node) => {
+                    mutation.addedNodes.forEach((node) => {
 
-                    if (
-                        node.nodeType === 1 &&
-                        node.classList.contains("writing-card")
-                    ) {
-                        observer.observe(node);
-                    }
+                        if (
+                            node.nodeType === 1 &&
+                            node.classList.contains("writing-card")
+                        ) {
+
+                            observer.observe(node);
+
+                        }
+
+                    });
 
                 });
 
             });
 
-        });
 
         cardWatcher.observe(writingGrid, {
             childList: true
         });
+
     }
 
 });
