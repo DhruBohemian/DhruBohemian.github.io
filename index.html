@@ -249,21 +249,68 @@
     </footer>
 
     <script>
+
 async function loadWritings() {
 
     const grid = document.querySelector(".writing-grid");
+    const featured = document.querySelector("#featured-writing");
+    const filters = document.querySelector("#category-filters");
+    const searchInput = document.querySelector("#writing-search");
+    const noResults = document.querySelector("#no-results");
 
     if (!grid) return;
 
+
     const writingFiles = [
+
         "a-mystery-called-human.md",
+
         "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
+
         "microplastics-the-invisible-threat-inside-the-human-body.md",
+
         "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
+
         "ফুলের-মতো-নারী.md",
+
         "ekto-proshongsha-ekto-bhalo-thaka.md",
-         "জেনে-গেলে-মানতে-হবে.md"
+
+        "জেনে-গেলে-মানতে-হবে.md"
+
     ];
+
+
+    const writings = [];
+
+
+    function getValue(frontMatter, key) {
+
+        const regex = new RegExp(
+            "^" + key + ":\\s*[\"']?(.*?)\\s*[\"']?$",
+            "mi"
+        );
+
+        const match = frontMatter.match(regex);
+
+        return match ? match[1].trim() : "";
+
+    }
+
+
+    function escapeHTML(value) {
+
+        const div = document.createElement("div");
+
+        div.textContent = value || "";
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =========================
+       LOAD MARKDOWN FILES
+    ========================= */
 
     for (const filename of writingFiles) {
 
@@ -273,90 +320,77 @@ async function loadWritings() {
                 "https://raw.githubusercontent.com/DhruBohemian/DhruBohemian.github.io/main/writings/"
                 + encodeURIComponent(filename);
 
+
             const response = await fetch(rawURL);
 
+
             if (!response.ok) {
+
                 console.error(
                     "FAILED TO LOAD:",
                     filename,
                     response.status
                 );
+
                 continue;
+
             }
+
 
             const markdown = await response.text();
 
-            /* Find frontmatter */
+
             const frontMatterMatch = markdown.match(
                 /^\s*---\s*([\s\S]*?)\s*---/
             );
 
+
             if (!frontMatterMatch) {
+
                 console.error(
                     "NO FRONTMATTER FOUND:",
                     filename
                 );
+
                 continue;
+
             }
+
 
             const frontMatter = frontMatterMatch[1];
 
-            function getValue(key) {
 
-                const regex = new RegExp(
-                    "^" + key + ":\\s*[\"']?(.*?)\\s*[\"']?$",
-                    "mi"
-                );
+            const title = getValue(
+                frontMatter,
+                "title"
+            );
 
-                const match = frontMatter.match(regex);
+            const category = getValue(
+                frontMatter,
+                "category"
+            );
 
-                return match ? match[1].trim() : "";
-            }
+            const excerpt = getValue(
+                frontMatter,
+                "excerpt"
+            );
 
-            const title = getValue("title");
-            const category = getValue("category");
-            const excerpt = getValue("excerpt");
 
-            if (!title) {
-                console.error(
-                    "TITLE NOT FOUND:",
-                    filename
-                );
-                continue;
-            }
+            if (!title) continue;
 
-            const card = document.createElement("article");
 
-            card.className = "writing-card";
+            writings.push({
 
-            card.innerHTML = `
-                <p class="category">
-                    ${escapeHTML(category)}
-                </p>
+                filename,
+                title,
+                category,
+                excerpt
 
-                <h3>
-                    ${escapeHTML(title)}
-                </h3>
+            });
 
-                <p>
-                    ${escapeHTML(excerpt)}
-                </p>
+        }
 
-                <a href="article.html?post=${encodeURIComponent(filename)}">
-                    Read More →
-                </a>
-            `;
-
-            const comingSoon =
-                document.querySelector(".coming-soon");
-
-            if (comingSoon) {
-                grid.insertBefore(card, comingSoon);
-            } else {
-                grid.appendChild(card);
-            }
-
-        } catch (error) {
+        catch (error) {
 
             console.error(
                 "ERROR LOADING:",
@@ -365,21 +399,298 @@ async function loadWritings() {
             );
 
         }
+
     }
-}
 
 
-function escapeHTML(value) {
+    /* =========================
+       FEATURED WRITING
+    ========================= */
 
-    const div = document.createElement("div");
+    const featuredFile =
+        "microplastics-the-invisible-threat-inside-the-human-body.md";
 
-    div.textContent = value || "";
 
-    return div.innerHTML;
+    const featuredWriting =
+        writings.find(
+            writing => writing.filename === featuredFile
+        );
+
+
+    if (featuredWriting && featured) {
+
+        featured.innerHTML = `
+
+            <div class="featured-label">
+                FEATURED WRITING
+            </div>
+
+            <div class="featured-content">
+
+                <p class="category">
+                    ${escapeHTML(featuredWriting.category)}
+                </p>
+
+                <h3>
+                    ${escapeHTML(featuredWriting.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(featuredWriting.excerpt)}
+                </p>
+
+                <a href="article.html?post=${encodeURIComponent(featuredWriting.filename)}">
+                    Read Featured Writing →
+                </a>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================
+       CATEGORY FILTERS
+    ========================= */
+
+    const categories = [
+
+        ...new Set(
+
+            writings
+                .map(writing => writing.category)
+                .filter(Boolean)
+
+        )
+
+    ];
+
+
+    categories.forEach(category => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "filter-btn";
+
+        button.dataset.category = category;
+
+        button.textContent = category;
+
+        filters.appendChild(button);
+
+    });
+
+
+    /* =========================
+       RENDER WRITINGS
+    ========================= */
+
+    function renderWritings() {
+
+        const activeButton =
+            document.querySelector(
+                ".filter-btn.active"
+            );
+
+
+        const activeCategory =
+            activeButton
+                ? activeButton.dataset.category
+                : "ALL";
+
+
+        const searchTerm =
+            searchInput
+                ? searchInput.value
+                    .toLowerCase()
+                    .trim()
+                : "";
+
+
+        const filtered =
+            writings.filter(writing => {
+
+                const matchesCategory =
+                    activeCategory === "ALL" ||
+                    writing.category === activeCategory;
+
+
+                const searchableText =
+                    (
+                        writing.title +
+                        " " +
+                        writing.category +
+                        " " +
+                        writing.excerpt
+                    ).toLowerCase();
+
+
+                const matchesSearch =
+                    searchableText.includes(searchTerm);
+
+
+                return (
+                    matchesCategory &&
+                    matchesSearch
+                );
+
+            });
+
+
+        /* Clear old cards */
+
+        grid.querySelectorAll(
+            ".writing-card:not(.coming-soon)"
+        ).forEach(card => card.remove());
+
+
+        const comingSoon =
+            grid.querySelector(".coming-soon");
+
+
+        /* Render filtered writings */
+
+        filtered
+            .filter(
+                writing =>
+                    writing.filename !== featuredFile
+            )
+            .forEach(writing => {
+
+                const card =
+                    document.createElement("article");
+
+
+                card.className =
+                    "writing-card";
+
+
+                card.innerHTML = `
+
+                    <p class="category">
+                        ${escapeHTML(writing.category)}
+                    </p>
+
+                    <h3>
+                        ${escapeHTML(writing.title)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(writing.excerpt)}
+                    </p>
+
+                    <a href="article.html?post=${encodeURIComponent(writing.filename)}">
+                        Read More →
+                    </a>
+
+                `;
+
+
+                if (comingSoon) {
+
+                    grid.insertBefore(
+                        card,
+                        comingSoon
+                    );
+
+                } else {
+
+                    grid.appendChild(card);
+
+                }
+
+
+                /* Allow scroll reveal */
+
+                if (
+                    typeof window.observeWritingCard ===
+                    "function"
+                ) {
+
+                    window.observeWritingCard(card);
+
+                }
+
+            });
+
+
+        /* No results */
+
+        if (noResults) {
+
+            noResults.classList.toggle(
+                "show",
+                filtered.filter(
+                    writing =>
+                        writing.filename !== featuredFile
+                ).length === 0
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       FILTER BUTTONS
+    ========================= */
+
+    filters.addEventListener(
+        "click",
+        event => {
+
+            const button =
+                event.target.closest(
+                    ".filter-btn"
+                );
+
+
+            if (!button) return;
+
+
+            document
+                .querySelectorAll(
+                    ".filter-btn"
+                )
+                .forEach(btn =>
+                    btn.classList.remove(
+                        "active"
+                    )
+                );
+
+
+            button.classList.add("active");
+
+
+            renderWritings();
+
+        }
+    );
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            renderWritings
+        );
+
+    }
+
+
+    renderWritings();
+
 }
 
 
 loadWritings();
+
 </script>
 
     <script>
