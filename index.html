@@ -261,26 +261,28 @@ async function loadWritings() {
     if (!grid) return;
 
 
-    const writingFiles = [
+    const manifestURL =
+    "https://raw.githubusercontent.com/DhruBohemian/DhruBohemian.github.io/main/writings/index.json";
 
-        "jyotsnay-tumi-ki-amay-mone-koro.md",
+let writingFiles = [];
 
-        "a-mystery-called-human.md",
+try {
 
-        "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
+    const manifestResponse = await fetch(
+        manifestURL + "?v=" + Date.now()
+    );
 
-        "microplastics-the-invisible-threat-inside-the-human-body.md",
+    if (!manifestResponse.ok) {
+        throw new Error("Manifest failed to load");
+    }
 
-        "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
+    writingFiles = await manifestResponse.json();
 
-        "ফুলের-মতো-নারী.md",
+} catch (error) {
 
-        "ekto-proshongsha-ekto-bhalo-thaka.md",
+    console.error("FAILED TO LOAD WRITING MANIFEST:", error);
 
-        "জেনে-গেলে-মানতে-হবে.md"
-
-    ];
-
+}
 
     const writings = [];
 
