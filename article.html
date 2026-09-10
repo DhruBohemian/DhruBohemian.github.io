@@ -895,26 +895,34 @@
            ALL WRITINGS
         ========================================= */
 
-        const writings = [
+       let writings = [];
 
-            "jyotsnay-tumi-ki-amay-mone-koro.md",
+async function loadWritingManifest() {
 
-            "a-mystery-called-human.md",
+    const manifestURL =
+        `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/writings/index.json`;
 
-            "je-ovab-peyechi-ta-jeno-uttoradhikar-na-hoy.md",
+    try {
 
-            "microplastics-the-invisible-threat-inside-the-human-body.md",
+        const response = await fetch(
+            manifestURL + "?v=" + Date.now()
+        );
 
-            "অ্যান্টিবায়োটিক-রেজিস্ট্যান্স-যে-নীরব-সংকট-আমাদের-ভবিষ্যৎকে-হুমকির-মুখে-ফেলছে.md",
+        if (!response.ok) {
+            throw new Error("Manifest failed to load");
+        }
 
-            "ফুলের-মতো-নারী.md",
+        writings = await response.json();
 
-            "ekto-proshongsha-ekto-bhalo-thaka.md",
+    } catch (error) {
 
-            "জেনে-গেলে-মানতে-হবে.md"
+        console.error(
+            "FAILED TO LOAD WRITING MANIFEST:",
+            error
+        );
 
-        ];
-
+    }
+}
 
         /* =========================================
            GET CURRENT POST
@@ -1523,7 +1531,15 @@
            START
         ========================================= */
 
-        loadArticle();
+        async function startArticlePage() {
+
+    await loadWritingManifest();
+
+    await loadArticle();
+
+}
+
+startArticlePage();
 
     </script>
 
