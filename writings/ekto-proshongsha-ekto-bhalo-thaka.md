@@ -1,6 +1,6 @@
 ---
 title: "একটু প্রশংসা, একটু ভালো থাকা"
-category: "REFLECTIONS • HUMANITY"
+category: "Thoughts"
 excerpt: "আন্তরিক একটা কমপ্লিমেন্ট কখনো কখনো একজন মানুষের পুরো দিনটাকে বদলে দিতে পারে।"
 ---
 
