@@ -458,33 +458,32 @@ try {
        CATEGORY FILTERS
     ========================= */
 
-    const categories = [
 
-        ...new Set(
+/* =========================
+   CATEGORY FILTERS
+========================= */
 
-            writings
-                .map(writing => writing.category)
-                .filter(Boolean)
+const categories = [
+    "Thoughts",
+    "Feelings",
+    "Science",
+    "Nostalgia",
+    "Philosophy"
+];
 
-        )
+categories.forEach(category => {
 
-    ];
+    const button = document.createElement("button");
 
+    button.className = "filter-btn";
 
-    categories.forEach(category => {
+    button.dataset.category = category;
 
-        const button =
-            document.createElement("button");
+    button.textContent = category;
 
-        button.className = "filter-btn";
+    filters.appendChild(button);
 
-        button.dataset.category = category;
-
-        button.textContent = category;
-
-        filters.appendChild(button);
-
-    });
+});
 
 
     /* =========================
