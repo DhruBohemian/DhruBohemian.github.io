@@ -2126,3 +2126,136 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   DHRUBOHEMIAN — EDITORIAL ARCHIVE
+========================================= */
+
+/* Archive width and spacing */
+.writings {
+    padding: 120px 7%;
+}
+
+.archive-controls {
+    max-width: 1080px;
+    margin-bottom: 38px;
+    gap: 20px;
+}
+
+.search-box {
+    max-width: 360px;
+}
+
+.search-box input {
+    min-height: 48px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.45);
+}
+
+/* Category filters */
+.category-filters {
+    gap: 7px;
+}
+
+.filter-btn {
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+/* Featured article */
+.featured-writing {
+    background: #292722;
+    border: 1px solid rgba(146,116,82,.25);
+    border-radius: 2px;
+    min-height: 350px;
+}
+
+.featured-writing::before {
+    border-color: rgba(198,155,120,.13);
+}
+
+.featured-content {
+    max-width: 800px;
+    padding: 65px 68px;
+}
+
+.featured-content h3 {
+    line-height: 1.35;
+    letter-spacing: -.5px;
+}
+
+.featured-content > p:not(.category) {
+    color: #c5c0b8;
+}
+
+/* Editorial card grid — desktop */
+@media (min-width: 901px) {
+    .writing-grid {
+        max-width: 1080px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .writing-card {
+        min-height: 300px;
+        padding: 34px 36px 30px;
+        background: rgba(255,255,255,.32);
+        border: 1px solid rgba(37,37,34,.13);
+        border-radius: 2px;
+    }
+
+    .writing-card h3 {
+        font-size: clamp(23px, 2.2vw, 29px);
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .writing-card > p:not(.category) {
+        font-size: 14px;
+        line-height: 1.9;
+        color: #77736c;
+    }
+
+    .writing-card:hover {
+        transform: translateY(-4px);
+        background: rgba(255,255,255,.65);
+        box-shadow: 0 12px 32px rgba(40,35,25,.045);
+    }
+}
+
+/* Mobile refinement */
+@media (max-width: 900px) {
+    .writings {
+        padding: 85px 6%;
+    }
+
+    .search-box {
+        max-width: none;
+    }
+
+    .featured-content {
+        padding: 48px 28px 38px;
+    }
+
+    .writing-card {
+        min-height: 0;
+        padding: 27px 24px;
+    }
+}
+
+@media (max-width: 520px) {
+    .writings {
+        padding: 75px 5%;
+    }
+
+    .featured-content h3 {
+        font-size: 27px;
+        line-height: 1.45;
+    }
+
+    .writing-card h3 {
+        font-size: 23px;
+    }
+}
