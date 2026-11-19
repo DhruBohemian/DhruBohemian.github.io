@@ -1836,3 +1836,293 @@ footer {
     }
 
 }
+
+/* =========================================
+   DHRUBOHEMIAN — PREMIUM EDITORIAL UPGRADE
+========================================= */
+
+:root {
+    --paper: #f7f5f0;
+    --ink: #252522;
+    --muted: #77736c;
+    --accent: #927452;
+    --line: rgba(37, 37, 34, 0.13);
+}
+
+/* GLOBAL */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    letter-spacing: 0.01em;
+}
+
+::selection {
+    background: #927452;
+    color: white;
+}
+
+/* NAVBAR */
+
+.navbar {
+    padding: 21px 8%;
+    background: rgba(247, 245, 240, 0.94);
+    border-bottom: 1px solid var(--line);
+}
+
+.logo {
+    font-size: 25px;
+    letter-spacing: -0.7px;
+}
+
+.navbar nav {
+    gap: 34px;
+}
+
+.navbar nav a {
+    font-size: 12px;
+    letter-spacing: 0.7px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 84vh;
+    padding: 110px 22px;
+}
+
+.small-title {
+    letter-spacing: 5px;
+    font-size: 10px;
+}
+
+.hero h1 {
+    font-size: clamp(56px, 9vw, 112px);
+    line-height: 1.12;
+    letter-spacing: -2.5px;
+}
+
+.hero-text {
+    max-width: 570px;
+    font-size: 17px;
+    line-height: 2;
+    color: var(--muted);
+}
+
+.hero-content > a {
+    border: 1px solid var(--ink);
+    padding: 14px 29px;
+    letter-spacing: 1px;
+    transition: all 0.35s ease;
+}
+
+.hero-content > a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* SECTION HEADINGS */
+
+.section-heading {
+    letter-spacing: -0.8px;
+}
+
+.section-heading::after {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin: 19px auto 0;
+}
+
+/* WRITING CARDS */
+
+.writing-card {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 30px;
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        background 0.4s ease;
+}
+
+.writing-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.35);
+    border-color: rgba(146,116,82,0.5);
+    box-shadow: 0 14px 35px rgba(40,35,25,0.045);
+}
+
+.writing-card a {
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+/* SEARCH */
+
+.search-box input {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink);
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(146,116,82,0.08);
+}
+
+/* CATEGORY FILTERS */
+
+.filter-btn {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--muted);
+    letter-spacing: 0.7px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: transparent;
+}
+
+.filter-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+/* FEATURED WRITING */
+
+.featured-writing {
+    border-radius: 3px;
+    box-shadow: 0 15px 45px rgba(30,25,18,0.045);
+}
+
+.featured-content h3 {
+    letter-spacing: -0.8px;
+    line-height: 1.45;
+}
+
+.featured-content a {
+    letter-spacing: 1px;
+}
+
+/* ABOUT & CONTACT */
+
+.about,
+.contact {
+    border-color: var(--line);
+}
+
+.social-links a {
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+}
+
+/* MOBILE REFINEMENT */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 17px 5%;
+    }
+
+    .navbar nav {
+        gap: 17px;
+    }
+
+    .hero {
+        min-height: 72vh;
+        padding: 85px 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(45px, 11vw, 76px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .writing-card {
+        padding: 23px;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .navbar nav {
+        gap: 12px;
+    }
+
+    .navbar nav a {
+        font-size: 10px;
+    }
+
+    .hero {
+        min-height: 68vh;
+        padding: 75px 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 12vw, 62px);
+    }
+
+    .hero-text {
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .writing-card {
+        padding: 20px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
