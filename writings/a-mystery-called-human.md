@@ -1,6 +1,6 @@
 ---
 title: A Mystery Called Human
-category: Thoughts
+category: Philosophy
 date: 2026-08-31T16:34:00.000+06:00
 excerpt: মানুষকে নিয়ে যুগের পর যুগ গবেষণা হয়েছে, তবু মানুষ আজও রয়ে গেছে এক
   অনুধাবন-অসাধ্য রহস্য।
